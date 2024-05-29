@@ -6,6 +6,8 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  volumeMode: Filesystem
+  storageClassName: ocs-storagecluster-cephfs
   resources:
     requests:
       storage: 100Gi
