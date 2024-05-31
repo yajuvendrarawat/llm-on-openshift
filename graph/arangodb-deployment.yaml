@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arangodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arangodb
+  template:
+    metadata:
+      labels:
+        app: arangodb
+    spec:
+      containers:
+      - name: arangodb
+        image: arangodb:latest
+        ports:
+        - containerPort: 8529
+        volumeMounts:
+        - name: arangodb-storage
+          mountPath: /var/lib/arangodb3
+        env:
+        - name: ARANGO_ROOT_PASSWORD
+          value: "arango"  # Set your root password here
+      volumes:
+      - name: arangodb-storage
+        persistentVolumeClaim:
+          claimName: arangodb-pvc
