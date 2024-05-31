@@ -1,0 +1,12 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: arangodb-route
+spec:
+  to:
+    kind: Service
+    name: arangodb-service
+  port:
+    targetPort: 8529
+  tls:
+    termination: edge
