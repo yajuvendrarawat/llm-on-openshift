@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: neo4j-config
+data:
+  neo4j.conf: |
+    dbms.default_listen_address=0.0.0.0
+    dbms.connector.bolt.listen_address=:7687
+    dbms.connector.http.listen_address=:7474
