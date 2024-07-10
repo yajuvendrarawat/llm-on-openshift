@@ -28,7 +28,7 @@ spec:
           mountPath: /data
         - name: custom-config
           mountPath: /var/lib/neo4j/conf
-         subPath: neo4j.conf
+          subPath: neo4j.conf
         securityContext:
           runAsUser: 7474
           fsGroup: 7474
