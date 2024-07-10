@@ -7,6 +7,7 @@ commonLabels:
 resources:
 # wave 0
 - neo4j-pvc.yaml
+- neo4j-configmap.yaml
 # wave 1
 - neo4j-deployment.yaml
 - neo4j-service.yaml
