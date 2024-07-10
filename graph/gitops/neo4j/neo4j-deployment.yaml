@@ -14,15 +14,6 @@ spec:
       labels:
         app: neo4j
     spec:
-      initContainers:
-      - name: init-permissions
-        image: busybox
-        command: ["sh", "-c", "mkdir -p /data/conf && cp /custom-config/neo4j.conf /data/conf/neo4j.conf && chown -R 7474:7474 /data"]
-        volumeMounts:
-        - name: neo4j-data
-          mountPath: /data
-        - name: custom-config
-          mountPath: /custom-config
       containers:
       - name: neo4j
         image: neo4j:4.4.10 # You can replace this with the version you need
@@ -35,14 +26,7 @@ spec:
         volumeMounts:
         - name: neo4j-data
           mountPath: /data
-        - name: neo4j-conf
-          mountPath: /var/lib/neo4j/conf
       volumes:
       - name: neo4j-data
         persistentVolumeClaim:
-          claimName: neo4j-pvc
-      - name: custom-config
-        configMap:
-          name: neo4j-config
-      - name: neo4j-conf
-        emptyDir: {}
+          claimName: neo4j-pvc # This PVC needs to be created separately
