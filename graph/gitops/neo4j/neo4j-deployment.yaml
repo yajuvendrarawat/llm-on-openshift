@@ -26,7 +26,13 @@ spec:
         volumeMounts:
         - name: neo4j-data
           mountPath: /data
+        - name: custom-config
+          mountPath: /var/lib/neo4j/conf
+          subPath: neo4j.conf
       volumes:
       - name: neo4j-data
         persistentVolumeClaim:
           claimName: neo4j-pvc # This PVC needs to be created separately
+      - name: custom-config
+        configMap:
+          name: neo4j-config
