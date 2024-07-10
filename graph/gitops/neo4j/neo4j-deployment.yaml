@@ -27,8 +27,11 @@ spec:
         - name: neo4j-data
           mountPath: /data
         - name: custom-config
-          mountPath: /var/lib/neo4j/conf
-          subPath: neo4j.conf
+          configMap:
+            name: neo4j-config
+            items:
+            - key: neo4j.conf
+              path: neo4j.conf
       volumes:
       - name: neo4j-data
         persistentVolumeClaim:
